@@ -1,0 +1,22 @@
+{
+  "name": "json-schema-model",
+  "version": "0.0.1",
+  "description": "Create simple DTO class from JSON Schema.",
+  "author": "kittttttan",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "esbuild": "esbuild",
+    "debug:web": "esbuild src/web.ts --bundle --sourcemap --outfile=build/web.js --target=chrome58",
+    "build:web": "esbuild src/web.ts --bundle --minify --outfile=build/web.min.js --target=chrome58",
+    "debug:node": "esbuild src/node.ts --bundle --outfile=build/node.js --platform=node --format=esm",
+    "build:node": "esbuild src/node.ts --bundle --minify --outfile=build/node.min.js --platform=node --format=esm",
+    "build:all": "npm run build:web && npm run build:node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "esbuild": "^0.25.4",
+    "typescript": "^5.8.3"
+  }
+}

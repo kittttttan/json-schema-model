@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Schema Model</title>
+    <style>
+        textarea {
+            width: 100%;
+            height: 10em;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="format">
+        <option value="php">PHP</option>
+    </select>
+    <div>
+        <textarea id="in" placeholder="JSON Schema here"></textarea>
+    </div>
+    <div>
+        <textarea id="out" placeholder="output here"></textarea>
+    </div>
+    <script type="module">
+        import './build/web.min.js';
+        console.log(`v${version} ${url}`);
+
+        const $format = document.getElementById('format');
+        const $out = document.getElementById('out');
+        const $in = document.getElementById('in');
+        $in.addEventListener('change', function () {
+            onChange(this);
+        });
+
+        function onChange(ta) {
+            const value = ta.value;
+
+            const format = $format.value;
+            if (!formats.includes(format)) {
+                console.warn(`unsupported format: ${format}`);
+                return;
+            }
+
+            const json = JSON.parse(value);
+            let model;
+            if (format === 'php') {
+                model = toPhpModel(json);
+            }
+            $out.value = model;
+        }
+    </script>
+</body>
+
+</html>
